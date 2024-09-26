@@ -1,15 +1,15 @@
 const express = require("express");
-const { Account } = require("../models/db");
-const authMiddleware = require("../Middleware/middleware");
+const { Account } = require("../models/db.js");
+const authMiddleware = require("../Middleware/middleware.js");
 const mongoose = require("mongoose");
 const router = express.Router();
 
 
 
-router.get("/balance", authMiddleware,async(req,res)=>{
-    console.log("User ID from middleware:", req.userID);
+router.get("/balance", authMiddleware, async(req,res)=>{
+    console.log("req.userID:", req.userID);
     const account = await Account.findOne({
-        userID: req.userID
+        userId: req.userId
     });
 
     if (!account) {
@@ -29,7 +29,7 @@ router.post("/transfer" ,authMiddleware, async(req,res) => {
     session.startTransaction();
     const { amount, to } = req.body;
 
-    const account = await Account.findOne({userID: req.userID}).session(session);
+    const account = await Account.findOne({userId: req.userId}).session(session);
 
     if(!account || account.balance < amount){
         await session.abortTransaction();
@@ -38,7 +38,7 @@ router.post("/transfer" ,authMiddleware, async(req,res) => {
         });
     }
 
-    const toAccount = await Account.findOne({ userID: to }).session(session);
+    const toAccount = await Account.findOne({ userId: to }).session(session);
 
     if(!toAccount){
         await session.abortTransaction();   
@@ -47,8 +47,8 @@ router.post("/transfer" ,authMiddleware, async(req,res) => {
         });
     }
 
-    await Account.updateOne({ userID: req.userID }, { $inc :{ balance: -amount } }).session(session);
-    await Account.updateOne({ userID: to }, { $inc: { balance: amount} }).session(session);
+    await Account.updateOne({ userId: req.userId }, { $inc :{ balance: -amount } }).session(session);
+    await Account.updateOne({ userId: to }, { $inc: { balance: amount} }).session(session);
 
     await session.commitTransaction();
     res.json({

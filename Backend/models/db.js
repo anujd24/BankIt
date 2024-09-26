@@ -12,7 +12,7 @@ const UserSchema = mongoose.Schema({
 });
 
 const AccountSchema = mongoose.Schema({
-    userID : {
+    userId : {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
