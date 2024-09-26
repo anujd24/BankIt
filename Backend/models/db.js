@@ -8,11 +8,11 @@ const UserSchema = mongoose.Schema({
     username: String,
     password: String,
     firstname: String,
-    lastname: String
+    lastname: String,
 });
 
 const AccountSchema = mongoose.Schema({
-    userId : {
+    userID : {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true

@@ -1,17 +1,17 @@
 const express = require("express");
 const zod = require("zod");
 const mongoose = require("mongoose");
-const { User } = require("../models/db.js");
+const { User, Account } = require("../models/db.js");
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = require("../config/config.js");
-const { authMiddleware } = require("../Middleware/middleware.js");
+const  authMiddleware  = require("../Middleware/middleware.js");
 const router = express.Router();
 
 const signupSchema = zod.object({
     username: zod.string(),
     password: zod.string(),
     firstname: zod.string(),
-    secondname: zod.string()
+    lastname: zod.string()
 });
 
 router.post("/signup", async(req,res)=> {
@@ -34,25 +34,40 @@ router.post("/signup", async(req,res)=> {
         })
     }
 
-    const dbUser = await User.create(body);
-    const token = jwt.sign({userID: dbUser._id}, JWT_SECRET)
+    const dbUser = await User.create({
+        username: body.username,
+        password: body.password,
+        firstname: body.firstname,
+        lastname: body.lastname,
+      });
+
+      const userID = dbUser._id;
+
+    await Account.create({
+        userID,
+        balance: Math.floor(Math.random() * 10000 + 1),
+    })
+
+    
+    const token = jwt.sign({userID: dbUser._id}, JWT_SECRET);
     res.json({
         message: "User Created Successfully",
         token: token
-    })
+    });
 });
 
 const signinBody = zod.object({
     username: zod.string(),
     password: zod.string()
-})
+});
 
 router.post("/signin", async(req,res)=> {
+    const body = req.body;
     const { success } = signinBody.safeParse(req.body);
     if(!success){
         return res.status(411).json({
             message: "Email already taken/ Incorrect Inputs"
-        })
+        });
     }
 
     const user = await User.findOne({
@@ -66,7 +81,7 @@ router.post("/signin", async(req,res)=> {
         }, JWT_SECRET);
         res.json({
             token:token
-        })
+        });
         return;
     }
 
@@ -75,7 +90,6 @@ router.post("/signin", async(req,res)=> {
     })
     
 });
-
 
 const updateBody = zod.object({
     password: zod.string().optional(),
@@ -86,14 +100,12 @@ const updateBody = zod.object({
 router.put("/", authMiddleware, async (req,res) =>{
     const {success} = updateBody.safeParse(req.body);
     if(!success){
-        res.status(411).json({
+       return res.status(411).json({
             message: "Error while updating information"
-        })
+        });
     }
 
-    await User.updateOne(req.body,{
-        id : req.userID
-    })
+    await User.updateOne({ _id: req.userID }, req.body);
 
     res.json({
         message: "Updated Successfully"
@@ -113,16 +125,16 @@ router.get("/bulk", async (req,res)=>{
                 "$regex": filter
             }
         }]
-    })
+    });
      
     res.json({
         user: users.map(user => ({
             username : user.username,
             firstname : user.firstname,
             lastname : user.lastname,
-            
+            _id: user._id,
         }))
-    })
+    });
 }); 
 
 
