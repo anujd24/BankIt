@@ -1,0 +1,92 @@
+body {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #0d0d0d; /* Deep dark gray */
+    color: #fff;
+    overflow: hidden;
+}
+
+.cyberpunk-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    overflow: auto; 
+    height: 100vh;
+}
+
+.cyberpunk-form {
+    background: #141414; /* Slightly lighter dark for contrast */
+    border-radius: 10px;
+    box-shadow: 0 0 20px #ff66ff, 0 0 30px #3399ff; /* Neon Pink and Blue */
+    padding: 3rem;
+    width: 24rem;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.cyberpunk-input-container {
+    margin-top: 1rem;
+    position: relative;
+}
+
+.cyberpunk-input-container input {
+    background: transparent;
+    border: 2px solid #3b3b3b; /* Subtle initial border */
+    border-radius: 8px;
+    color: #fff;
+    padding: 0.8rem;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.cyberpunk-input-container input:focus {
+    border-color: #00FF7F; /* Neon Green for focus */
+    box-shadow: 0 0 10px #00FF7F; /* Neon Green glow */
+}
+
+.cyberpunk-button-container {
+    margin-top: 2rem;
+}
+
+button {
+    background: linear-gradient(45deg, #ff66ff, #3399ff); /* Neon Pink to Blue Gradient */
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+button:hover {
+    box-shadow: 0 0 20px #ff66ff, 0 0 30px #3399ff; /* Pink and Blue Neon glow */
+    transform: scale(1.05); /* Subtle scaling effect for emphasis */
+}
+
+.cyberpunk-error {
+    color: #ff4d4d; /* Red for error messages */
+    margin-top: 1rem;
+}
+
+.cyberpunk-bottom-warning {
+    margin-top: 1rem;
+    color: #ccc;
+}
+
+.cyberpunk-bottom-warning a {
+    color: #33ccff; /* Neon Blue for link */
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.cyberpunk-bottom-warning a:hover {
+    color: #ff66ff; /* Pink on hover */
+}

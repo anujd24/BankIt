@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose"
 
 const MONGODB_URL = "mongodb+srv://anujd24:GkTYCfHDWEwzmVIn@ad.tqrvfcl.mongodb.net/BankIt";
 
@@ -23,10 +23,10 @@ const AccountSchema = mongoose.Schema({
     }
 });
 
-const Account = mongoose.model("Account", AccountSchema);
-const User = mongoose.model("User", UserSchema);
+export const Account = mongoose.model("Account", AccountSchema);
+export const User = mongoose.model("User", UserSchema);
 
-module.exports = {
-    User,
-    Account
-}
+// module.exports = {
+//     User,
+//     Account
+// }

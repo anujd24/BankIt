@@ -1,30 +1,28 @@
-import {
-  BrowserRouter,
-  Route,
-  Routes,
-} from "react-router-dom";
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {Signin} from './pages/Signin';
+import {Signup} from './pages/Signup';
+import {Dashboard} from './pages/Dashboard';
+import {SendMoney} from './pages/SendMoney';
+import {WelcomePage} from './pages/WelcomePage';
+import {Appbar} from './components/AppBar';
 
-
-import { Signup } from "./pages/Signup";
-// import { Signin } from "./pages/Signin";
-// import { Dashboard } from "./pages/Dashboard";
-// import { SendMoney } from "./pages/SendMoney";
-
-function App() {
- 
-
+export const App = () => {
   return (
-    <>
-     <BrowserRouter>
+    <Router>
+      <div >
+        
         <Routes>
+          <Route path="/" element={<WelcomePage />} />
+          <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
-          {/* <Route path="/signin" element={<Signin />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/send" element={<SendMoney />} /> */}
+          <Route path="/send-money" element={<SendMoney />} />
         </Routes>
-      </BrowserRouter>
-    </>
-  )
-}
+      </div>
+    </Router>
+  );
+};
 
-export default App
+

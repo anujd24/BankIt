@@ -1,5 +1,17 @@
-export function SubHeading({label}){
-    return <div classname="text-slate-500 text-md pt-1 px-4 pb-4">
-        {label}
-    </div>
-}
+
+import React from 'react';
+
+export const SubHeading = ({ text }) => {
+  return (
+    <h2 style={styles.subHeading}>{text}</h2>
+  );
+};
+
+const styles = {
+  subHeading: {
+    fontSize: '20px',
+    fontWeight: 'normal',
+    color: '#666',
+    marginBottom: '20px',
+  },
+};

@@ -1,0 +1,90 @@
+body {
+    background-color: #0d0d0d; /* Deep dark gray background */
+}
+
+.users-container {
+    max-width: 800px; /* Set a maximum width for the user list */
+    margin: 0 auto; /* Center the container */
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+    font-size: 1rem;
+    background-color: #1a1a1a; /* Dark background for input */
+    color: #fff; /* White text for contrast */
+    transition: all 0.3s ease-in-out;
+}
+
+.search-input:focus {
+    outline: none;
+    box-shadow: 0 0 10px #00FF7F; /* Neon Green focus glow */
+}
+
+.user-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #141414, #1e1e1e); /* Gradient background */
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    color: #fff; /* White text */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.user-card:hover {
+    box-shadow: 0 0 20px #00FF7F; /* Neon Green glow on hover */
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    background-color: #3b3b3b; /* Subtle gray for the avatar */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff; /* White text for avatar initials */
+    margin-right: 1rem; /* Space between avatar and details */
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.user-email {
+    font-size: 0.9rem;
+    color: #ccc; /* Light gray for email */
+}
+
+.send-money-button {
+    background: linear-gradient(45deg, #09ff36, #f2ff35); /* Neon Pink to Blue Gradient */
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.send-money-button:hover {
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+    box-shadow: 0 0 20px rgba(132, 236, 42, 0.5); /* Neon glow effect */
+}

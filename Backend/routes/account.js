@@ -1,7 +1,7 @@
-const express = require("express");
-const { Account } = require("../models/db.js");
-const authMiddleware = require("../Middleware/middleware.js");
-const mongoose = require("mongoose");
+import express from "express";
+import { Account } from "../models/db.js";
+import { authMiddleware } from "../Middleware/middleware.js";
+import mongoose from "mongoose";
 const router = express.Router();
 
 
@@ -56,4 +56,4 @@ router.post("/transfer" ,authMiddleware, async(req,res) => {
     });
 }); 
 
-module.exports = router;
+export {router}

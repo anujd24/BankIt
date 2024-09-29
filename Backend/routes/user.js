@@ -1,10 +1,10 @@
-const express = require("express");
-const zod = require("zod");
-const mongoose = require("mongoose");
-const { User, Account } = require("../models/db.js");
-const jwt = require("jsonwebtoken");
-const JWT_SECRET = require("../config/config.js");
-const  authMiddleware  = require("../Middleware/middleware.js");
+import express from "express";
+import zod from "zod";
+import mongoose from "mongoose";
+import { User, Account } from "../models/db.js";
+import jwt from "jsonwebtoken";
+import { JWT_SECRET } from "../config/config.js";
+import { authMiddleware } from "../Middleware/middleware.js";
 const router = express.Router();
 
 const signupSchema = zod.object({
@@ -138,4 +138,4 @@ router.get("/bulk", async (req,res)=>{
 }); 
 
 
-module.exports = router;
+export { router };
