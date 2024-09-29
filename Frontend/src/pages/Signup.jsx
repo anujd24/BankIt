@@ -9,8 +9,8 @@ import { useNavigate } from "react-router-dom";
 import "../styles/signup.css"; // Include the signup styles
 
 export const Signup = () => {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+    const [firstname, setFirstName] = useState("");
+    const [lastname, setLastName] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -18,17 +18,17 @@ export const Signup = () => {
 
     const handleSignup = async () => {
         // Form validation
-        if (!firstName || !lastName || !username || !password) {
+        if (!firstname || !lastname || !username || !password) {
             alert("Please fill in all fields."); // User-friendly alert
             return;
         }
 
         try {
             const response = await axios.post("http://localhost:3000/api/v1/user/signup", {
+                firstname,
+                lastname,
                 username,
-                firstName,
-                lastName,
-                password,
+                password
             });
 
             // Handle the response based on your API structure
