@@ -4,24 +4,21 @@ import * as THREE from 'three';
 import { Button } from '../components/Button';
 import { Heading } from '../components/Heading';
 import { SubHeading } from '../components/SubHeading';
-import dollarTextureImage from "../assets/dollarTextureImage.jpg"; // Adjust the path if necessary
+import dollarTextureImage from "../assets/dollarTextureImage.jpg"; 
 
 export const WelcomePage = () => {
   const threeRef = useRef();
 
   useEffect(() => {
-    // Set up the scene, camera, and renderer
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     threeRef.current.appendChild(renderer.domElement);
 
-    // Load the dollar texture
     const textureLoader = new THREE.TextureLoader();
     const dollarTexture = textureLoader.load(dollarTextureImage);
 
-    // Create coins with the dollar texture
     const coins = [];
     const coinGeometry = new THREE.CylinderGeometry(1, 1, 0.2, 32);
     const coinMaterial = new THREE.MeshStandardMaterial({
@@ -44,7 +41,6 @@ export const WelcomePage = () => {
       coins.push(coin);
     }
 
-    // Add lights
     const ambientLight = new THREE.AmbientLight(0xffffff, 2.5);
     scene.add(ambientLight);
     const pointLight = new THREE.PointLight(0xffffff, 1);
@@ -54,25 +50,21 @@ export const WelcomePage = () => {
     pointLight2.position.set(-10, -10, -10);
     scene.add(pointLight2);
 
-    // Position the camera
     camera.position.z = 15;
 
-    // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
 
-      // Rotate and move coins
       coins.forEach((coin) => {
         coin.rotation.x += 0.01;
         coin.rotation.y += 0.01;
-        coin.position.y += Math.sin(Date.now() * 0.001) * 0.01; // Float effect
+        coin.position.y += Math.sin(Date.now() * 0.001) * 0.01; 
       });
 
       renderer.render(scene, camera);
     };
     animate();
 
-    // Handle window resize
     const handleResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
@@ -80,7 +72,6 @@ export const WelcomePage = () => {
     };
     window.addEventListener('resize', handleResize);
 
-    // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
       threeRef.current.removeChild(renderer.domElement);
@@ -110,7 +101,7 @@ const styles = {
     overflow: 'hidden',
     height: '100vh',
     width: '100vw',
-    backgroundColor: '#e8f2f4', // Light background color for contrast
+    backgroundColor: '#e8f2f4', 
   },
   threeContainer: {
     position: 'absolute',
@@ -126,7 +117,7 @@ const styles = {
     maxWidth: '400px',
     width: '100%',
     textAlign: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.9)', // Semi-transparent white
+    backgroundColor: 'rgba(255, 255, 255, 0.9)', 
     padding: '40px 20px',
     borderRadius: '10px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',

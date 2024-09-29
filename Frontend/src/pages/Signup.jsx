@@ -31,18 +31,15 @@ export const Signup = () => {
                 password
             });
 
-            // Handle the response based on your API structure
             console.log("Sign-up successful:", response.data);
 
-            // Optionally auto-login the user after sign-up
             if (response.data.token) {
                 localStorage.setItem("token", response.data.token);
             }
 
-            // Navigate to dashboard after successful sign-up
-            navigate("/dashboard");
+             navigate("/dashboard");
+
         } catch (error) {
-            // Handle error response and give feedback to the user
             console.error("Error signing up:", error.response?.data || error.message);
             setError("Error signing up: " + (error.response?.data?.message || "Please try again.")); // Show a user-friendly message
         }
@@ -51,14 +48,14 @@ export const Signup = () => {
     return (
         <div className="cyberpunk-container">
             <div className="cyberpunk-form">
-                {/* Heading */}
+                
                 <Heading text={"Create an Account"} className="text-3xl font-bold text-gray-800 mb-4 text-center" />
                 <SubHeading text={"Fill in your details to sign up"} className="text-gray-500 mb-6 text-center" />
                 
-                {/* Error Message */}
+                
                 {error && <div className="cyberpunk-error">{error}</div>}
 
-                {/* Input Fields */}
+                
                 <div className="space-y-4">
                     <InputBox
                         onChange={(e) => setFirstName(e.target.value)}
@@ -87,7 +84,7 @@ export const Signup = () => {
                     />
                 </div>
     
-                {/* Sign up Button */}
+                
                 <div className="cyberpunk-button-container">
                     <Button
                         onClick={handleSignup}
@@ -96,7 +93,7 @@ export const Signup = () => {
                     />
                 </div>
     
-                {/* Sign-in Redirection */}
+                
                 <div className="cyberpunk-bottom-warning">
                     <BottomWarning
                         label="Already have an account?"

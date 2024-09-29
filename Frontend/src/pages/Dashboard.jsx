@@ -6,10 +6,7 @@ import { Users } from "../components/Users";
 export const Dashboard = () => {
     return (
         <div className="relative bg-gradient-to-r from-green-400 to-blue-500 min-h-screen">
-            {/* Particle Background */}
-            {/* <ParticleBackground /> */}
-
-            {/* Appbar at the top */}
+          
             <Appbar />
 
             <div className="container mx-auto mt-10 p-6 bg-white shadow-xl rounded-2xl relative z-10">

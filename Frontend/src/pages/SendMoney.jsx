@@ -53,7 +53,7 @@ export const SendMoney = () => {
                     </div>
                     <button
     onClick={() => {
-        // Ensure amount is defined before making the API call
+        
         if (!amount || amount <= 0) {
             alert("Please enter a valid amount.");
             return;
@@ -71,7 +71,7 @@ export const SendMoney = () => {
         .then(response => {
             console.log("Transfer successful", response.data);
             alert("Transfer initiated successfully!");
-            // Optionally reset the form or update the UI here
+        
         })
         .catch(error => {
             console.error("Error during transfer", error);
