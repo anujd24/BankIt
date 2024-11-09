@@ -3,12 +3,9 @@ import axios from "axios";
 import { useState } from "react";
 
 export const SendMoney = () => {
-    console.log("SendMoney component is rendering");
-
     const [searchParams] = useSearchParams();
     const id = searchParams.get("id");
     const name = searchParams.get("name");
-    console.log("Query Parameters:", { id, name });
 
     const [amount, setAmount] = useState(0);
     const navigate = useNavigate();  // Initialize navigate hook
@@ -54,8 +51,7 @@ export const SendMoney = () => {
                     <button
                         onClick={() => {
                             if (!amount || amount <= 0) {
-                                alert("Please enter a valid amount.");
-                                return;
+                                return;  // Prevents navigating if amount is invalid
                             }
 
                             // Make the API call to initiate the transfer
@@ -67,16 +63,13 @@ export const SendMoney = () => {
                                     Authorization: "Bearer " + localStorage.getItem("token")
                                 }
                             })
-                            .then(response => {
-                                console.log("Transfer successful", response.data);
-                                alert("Transfer initiated successfully!");
-
-                                // Navigate to SuccessPage
-                                navigate("/success");  // Redirect to success page
+                            .then(() => {
+                                // Navigate to SuccessPage on successful transfer
+                                navigate("/success");
                             })
                             .catch(error => {
                                 console.error("Error during transfer", error);
-                                alert("Failed to initiate the transfer. Please try again.");
+                                // Optional: handle errors if needed, but avoid alerts to keep page clean
                             });
                         }}
                         className="w-full bg-green-600 text-white rounded-lg py-3 text-lg font-semibold hover:bg-green-700 transition"

@@ -46,21 +46,22 @@ export const authMiddleware = (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, JWT_SECRET);
-        console.log("Decoded token:", decoded);  // Log the decoded token to check what's inside
+        console.log("Decoded token:", decoded);
 
         if (decoded.userId) {
             req.userId = decoded.userId;
-            console.log("User ID set:", req.userId);  // Log the user ID being set
-            next();
+            console.log("User ID set:", req.userId);
+            next();  // Continue to the next middleware or route handler
         } else {
             return res.status(403).json({
                 message: "Invalid token"
             });
         }
     } catch (err) {
-        console.error("Token verification error:", err);  // Log any errors related to token verification
+        console.error("Token verification error:", err);
         return res.status(403).json({
             message: "Token verification failed"
         });
     }
 };
+
