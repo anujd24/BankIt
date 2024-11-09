@@ -11,9 +11,9 @@ export const Appbar = () => {
       </div>
       <nav style={styles.nav}>
         <ul style={styles.navList}>
-          <li style={styles.navItem}>
+          {/* <li style={styles.navItem}>
             <Link to="/signin" style={styles.navLink}>Sign In</Link>
-          </li>
+          </li> */}
           <li style={styles.navItem}>
             <Link to="/signup" style={styles.navLink}>Sign Up</Link>
           </li>

@@ -87,7 +87,7 @@ export const WelcomePage = () => {
         <div style={styles.buttonContainer}>
           <Button 
             text="Get Started" 
-            onClick={() => window.location.href = '/signin'} 
+            onClick={() => window.location.href = '/signup'} 
           />
         </div>
       </div>
