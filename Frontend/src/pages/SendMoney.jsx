@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Lottie from "react-lottie";
-import transferMoney from "../assets/transfer-Animation.json"; // Example Lottie animation file
+import transferMoney from "../assets/transfer-Animation.json"; // First Lottie animation file
+import leftSideAnimation from "../assets/leftSide-Animation.json"; // Second Lottie animation for the left side
+import rightSideAnimation from "../assets/rightSide-Animation.json"; // Third Lottie animation for the right side
 
 export const SendMoney = () => {
     const [searchParams] = useSearchParams();
@@ -16,7 +18,27 @@ export const SendMoney = () => {
     const defaultOptions = {
         loop: true,
         autoplay: true, // Animation will play automatically
-        animationData: transferMoney, // Correct animation file
+        animationData: transferMoney, // First Lottie animation (background)
+        rendererSettings: {
+            preserveAspectRatio: "xMidYMid slice",
+        },
+    };
+
+    // Lottie animation for the left side
+    const leftSideOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: leftSideAnimation, // Second Lottie animation (left side)
+        rendererSettings: {
+            preserveAspectRatio: "xMidYMid slice",
+        },
+    };
+
+    // Lottie animation for the right side
+    const rightSideOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: rightSideAnimation, // Third Lottie animation (right side)
         rendererSettings: {
             preserveAspectRatio: "xMidYMid slice",
         },
@@ -32,9 +54,19 @@ export const SendMoney = () => {
 
     return (
         <div className="relative flex justify-center items-center min-h-screen bg-gray-50">
-    
-            <div className="absolute inset-0 z-0 ">
-                <Lottie options={defaultOptions} height={600} width={900} />
+            {/* Lottie Animation in Background */}
+            <div className="absolute inset-0 z-0">
+                <Lottie options={defaultOptions} height={750} width={900} />
+            </div>
+
+            {/* Lottie Animation on the Left Side */}
+            <div className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10">
+                <Lottie options={leftSideOptions} height={300} width={300} />
+            </div>
+
+            {/* Lottie Animation on the Right Side */}
+            <div className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10">
+                <Lottie options={rightSideOptions} height={300} width={300} />
             </div>
 
             <div className="relative z-10 max-w-lg w-full bg-white shadow-2xl rounded-lg p-8">
