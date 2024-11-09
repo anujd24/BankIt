@@ -1,19 +1,15 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import { createRequire } from 'module';
-
-const require = createRequire(import.meta.url);
+import { resolve } from 'path';
 
 export default defineConfig({
-    plugins: [react()],
-    define: {
-        'global': {},
-        'process.env': {},
-        'Buffer': require('buffer').Buffer
-    },
-    resolve: {
-        alias: {
-            'buffer': 'buffer/' // Ensure buffer is correctly resolved
-        }
+  define: {
+    // Polyfill for Buffer
+    Buffer: 'require("buffer").Buffer',
+  },
+  resolve: {
+    alias: {
+      // Optional: Ensure the buffer module is correctly resolved
+      buffer: resolve(__dirname, 'node_modules', 'buffer')
     }
+  }
 });
