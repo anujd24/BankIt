@@ -1,6 +1,8 @@
+import React, { useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import Lottie from "react-lottie";
+import * as animationData from "../assets/lottie/transferAnimation.json"; // Example Lottie animation file
 
 export const SendMoney = () => {
     const [searchParams] = useSearchParams();
@@ -8,7 +10,17 @@ export const SendMoney = () => {
     const name = searchParams.get("name");
 
     const [amount, setAmount] = useState(0);
-    const navigate = useNavigate();  // Initialize navigate hook
+    const navigate = useNavigate(); // Initialize navigate hook
+
+    // Lottie animation settings
+    const defaultOptions = {
+        loop: true,
+        autoplay: true, // Animation will play automatically
+        animationData: animationData, // Use your Lottie JSON animation file here
+        rendererSettings: {
+            preserveAspectRatio: "xMidYMid slice",
+        },
+    };
 
     if (!id || !name) {
         return (
@@ -19,8 +31,13 @@ export const SendMoney = () => {
     }
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-50">
-            <div className="max-w-lg w-full bg-white shadow-2xl rounded-lg p-8">
+        <div className="relative flex justify-center items-center min-h-screen bg-gray-50">
+            {/* Lottie Animation in Background */}
+            <div className="absolute inset-0 z-0">
+                <Lottie options={defaultOptions} height={400} width={400} />
+            </div>
+
+            <div className="relative z-10 max-w-lg w-full bg-white shadow-2xl rounded-lg p-8">
                 <div className="text-center mb-6">
                     <h2 className="text-4xl font-bold text-gray-800">Send Money</h2>
                 </div>
@@ -51,7 +68,7 @@ export const SendMoney = () => {
                     <button
                         onClick={() => {
                             if (!amount || amount <= 0) {
-                                return;  // Prevents navigating if amount is invalid
+                                return; // Prevents navigating if amount is invalid
                             }
 
                             // Make the API call to initiate the transfer
