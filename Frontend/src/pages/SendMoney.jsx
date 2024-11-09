@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
@@ -11,6 +11,7 @@ export const SendMoney = () => {
     console.log("Query Parameters:", { id, name });
 
     const [amount, setAmount] = useState(0);
+    const navigate = useNavigate();  // Initialize navigate hook
 
     if (!id || !name) {
         return (
@@ -49,40 +50,39 @@ export const SendMoney = () => {
                             id="amount"
                             placeholder="Enter amount"
                         />
-
                     </div>
                     <button
-    onClick={() => {
-        
-        if (!amount || amount <= 0) {
-            alert("Please enter a valid amount.");
-            return;
-        }
+                        onClick={() => {
+                            if (!amount || amount <= 0) {
+                                alert("Please enter a valid amount.");
+                                return;
+                            }
 
-        // Make the API call to initiate the transfer
-        axios.post("http://localhost:3000/api/v1/account/transfer", {
-            to: id,
-            amount
-        }, {
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem("token")
-            }
-        })
-        .then(response => {
-            console.log("Transfer successful", response.data);
-            alert("Transfer initiated successfully!");
-        
-        })
-        .catch(error => {
-            console.error("Error during transfer", error);
-            alert("Failed to initiate the transfer. Please try again.");
-        });
-    }}
-    className="w-full bg-green-600 text-white rounded-lg py-3 text-lg font-semibold hover:bg-green-700 transition"
->
-    Initiate Transfer
-</button>
+                            // Make the API call to initiate the transfer
+                            axios.post("http://localhost:3000/api/v1/account/transfer", {
+                                to: id,
+                                amount
+                            }, {
+                                headers: {
+                                    Authorization: "Bearer " + localStorage.getItem("token")
+                                }
+                            })
+                            .then(response => {
+                                console.log("Transfer successful", response.data);
+                                alert("Transfer initiated successfully!");
 
+                                // Navigate to SuccessPage
+                                navigate("/success");  // Redirect to success page
+                            })
+                            .catch(error => {
+                                console.error("Error during transfer", error);
+                                alert("Failed to initiate the transfer. Please try again.");
+                            });
+                        }}
+                        className="w-full bg-green-600 text-white rounded-lg py-3 text-lg font-semibold hover:bg-green-700 transition"
+                    >
+                        Initiate Transfer
+                    </button>
                 </div>
             </div>
         </div>
