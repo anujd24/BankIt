@@ -1,6 +1,6 @@
 // src/SuccessPage.js
 import React from "react";
-import { Lottie } from "lottie-react";
+import Lottie  from "lottie-react";
 import successAnimation from "../assets/success-animation.json"; // adjust path if needed
 
 export const SuccessPage = () => {
