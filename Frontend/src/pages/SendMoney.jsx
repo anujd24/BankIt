@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Lottie from "react-lottie";
-import * as animationData from "../assets/lottie/transferAnimation.json"; // Example Lottie animation file
+import transferMoney from "../assets/transfer-Animation.json"; // Example Lottie animation file
 
 export const SendMoney = () => {
     const [searchParams] = useSearchParams();
@@ -16,7 +16,7 @@ export const SendMoney = () => {
     const defaultOptions = {
         loop: true,
         autoplay: true, // Animation will play automatically
-        animationData: animationData, // Use your Lottie JSON animation file here
+        animationData: transferMoney, // Correct animation file
         rendererSettings: {
             preserveAspectRatio: "xMidYMid slice",
         },
@@ -32,9 +32,9 @@ export const SendMoney = () => {
 
     return (
         <div className="relative flex justify-center items-center min-h-screen bg-gray-50">
-            {/* Lottie Animation in Background */}
-            <div className="absolute inset-0 z-0">
-                <Lottie options={defaultOptions} height={400} width={400} />
+    
+            <div className="absolute inset-0 z-0 ">
+                <Lottie options={defaultOptions} height={600} width={900} />
             </div>
 
             <div className="relative z-10 max-w-lg w-full bg-white shadow-2xl rounded-lg p-8">
