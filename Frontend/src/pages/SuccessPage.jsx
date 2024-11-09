@@ -1,9 +1,9 @@
 // src/SuccessPage.js
 import React from "react";
 import { Lottie } from "lottie-react";
-import successAnimation from "./assets/success-animation.json"; // adjust path if needed
+import successAnimation from "../assets/success-animation.json"; // adjust path if needed
 
-const SuccessPage = () => {
+export const SuccessPage = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-blue-50 text-center">
       <h1 className="text-2xl font-semibold text-green-600 mb-4">
@@ -27,4 +27,4 @@ const SuccessPage = () => {
   );
 };
 
-export default SuccessPage;
+
