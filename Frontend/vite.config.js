@@ -1,15 +1,18 @@
 import { defineConfig } from 'vite';
-import { resolve } from 'path';
+import { Buffer } from 'buffer';
 
 export default defineConfig({
   define: {
-    // Polyfill for Buffer
-    Buffer: 'require("buffer").Buffer',
+    // Ensuring that Buffer is correctly handled globally in Vite build
+    'global.Buffer': JSON.stringify(Buffer),
   },
-  resolve: {
-    alias: {
-      // Optional: Ensure the buffer module is correctly resolved
-      buffer: resolve(__dirname, 'node_modules', 'buffer')
-    }
-  }
+  build: {
+    // Commonjs support for polyfills
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
+  },
+  optimizeDeps: {
+    include: ['buffer'],
+  },
 });

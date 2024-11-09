@@ -7,12 +7,11 @@ import { SendMoney } from './pages/SendMoney';
 import { WelcomePage } from './pages/WelcomePage';
 import { SuccessPage } from './pages/SuccessPage';
 
-// Importing the Buffer polyfill
-import Buffer from 'buffer';
-window.Buffer = Buffer;
+import { Buffer } from 'buffer';
+if (!window.Buffer) {
+  window.Buffer = Buffer;
+}
 
-// Import the CSS
-import './styles.css';
 
 export const App = () => {
   return (
