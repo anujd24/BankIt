@@ -6,7 +6,8 @@ import {Signup} from './pages/Signup';
 import {Dashboard} from './pages/Dashboard';
 import {SendMoney} from './pages/SendMoney';
 import {WelcomePage} from './pages/WelcomePage';
-import {Appbar} from './components/AppBar';
+// import {Appbar} from './components/AppBar';
+import {SuccessPage} from './pages/SuccessPage';
 
 export const App = () => {
   return (
@@ -19,6 +20,7 @@ export const App = () => {
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/send" element={<SendMoney />} />
+          <Route path="/success" element={<SuccessPage />} />
         </Routes>
       </div>
     </Router>
