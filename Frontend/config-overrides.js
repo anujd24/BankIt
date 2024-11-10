@@ -1,6 +1,6 @@
-const webpack = require("webpack");
+import {webpack} from "webpack";
 
-module.exports = function override(config, env) {
+export function override(config, env) {
     // Modify webpack config with fallbacks and plugins
     config.resolve.fallback = {
         ...config.resolve.fallback,
