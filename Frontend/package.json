@@ -5,9 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "debug": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject"
   },
   "dependencies": {
     "@esbuild-plugins/node-modules-polyfill": "^0.2.2",
@@ -21,7 +24,11 @@
     "react-lottie": "^1.2.4",
     "react-router-dom": "^6.26.2",
     "react-tsparticles": "^2.12.2",
-    "three": "^0.169.0"
+    "three": "^0.169.0",
+
+"process": "^0.11.10",
+"stream-browserify": "^3.0.0",
+"react-app-rewired": "^2.2.1" 
   },
   "devDependencies": {
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
