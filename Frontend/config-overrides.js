@@ -1,4 +1,4 @@
-const webpack = require("webpack")
+import require from "webpack";
 
 module.exports = function override(config, env) {
     //do stuff with the webpack config...
