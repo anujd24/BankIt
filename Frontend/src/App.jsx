@@ -7,11 +7,6 @@ import { SendMoney } from './pages/SendMoney';
 import { WelcomePage } from './pages/WelcomePage';
 import { SuccessPage } from './pages/SuccessPage';
 
-import { Buffer } from 'buffer';
-if (!window.Buffer) {
-  window.Buffer = Buffer;
-}
-
 
 export const App = () => {
   return (
