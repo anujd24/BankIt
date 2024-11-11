@@ -1,13 +1,14 @@
-// src/pages/WelcomePage.jsx
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { Button } from '../components/Button';
 import { Heading } from '../components/Heading';
 import { SubHeading } from '../components/SubHeading';
 import dollarTextureImage from "../assets/dollarTextureImage.jpg"; 
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 export const WelcomePage = () => {
   const threeRef = useRef();
+  const navigate = useNavigate(); // Initialize navigate hook
 
   useEffect(() => {
     const scene = new THREE.Scene();
@@ -15,10 +16,10 @@ export const WelcomePage = () => {
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     threeRef.current.appendChild(renderer.domElement);
-
+  
     const textureLoader = new THREE.TextureLoader();
     const dollarTexture = textureLoader.load(dollarTextureImage);
-
+  
     const coins = [];
     const coinGeometry = new THREE.CylinderGeometry(1, 1, 0.2, 32);
     const coinMaterial = new THREE.MeshStandardMaterial({
@@ -27,7 +28,7 @@ export const WelcomePage = () => {
       emissiveIntensity: 0.011,
       roughness: 0.1,
     });
-
+  
     for (let i = 0; i < 30; i++) {
       const coin = new THREE.Mesh(coinGeometry, coinMaterial);
       coin.position.set(
@@ -40,7 +41,7 @@ export const WelcomePage = () => {
       scene.add(coin);
       coins.push(coin);
     }
-
+  
     const ambientLight = new THREE.AmbientLight(0xffffff, 2.5);
     scene.add(ambientLight);
     const pointLight = new THREE.PointLight(0xffffff, 1);
@@ -49,34 +50,39 @@ export const WelcomePage = () => {
     const pointLight2 = new THREE.PointLight(0xffffff, 0.5);
     pointLight2.position.set(-10, -10, -10);
     scene.add(pointLight2);
-
+  
     camera.position.z = 15;
-
+  
     const animate = () => {
       requestAnimationFrame(animate);
-
+  
       coins.forEach((coin) => {
         coin.rotation.x += 0.01;
         coin.rotation.y += 0.01;
-        coin.position.y += Math.sin(Date.now() * 0.001) * 0.01; 
+        coin.position.y += Math.sin(Date.now() * 0.001) * 0.01;
       });
-
+  
       renderer.render(scene, camera);
     };
     animate();
-
+  
     const handleResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
     };
     window.addEventListener('resize', handleResize);
-
+  
+    // Cleanup on component unmount
     return () => {
       window.removeEventListener('resize', handleResize);
-      threeRef.current.removeChild(renderer.domElement);
+  
+      if (threeRef.current) {
+        threeRef.current.removeChild(renderer.domElement);
+      }
     };
   }, []);
+  
 
   return (
     <div style={styles.container}>
@@ -87,7 +93,7 @@ export const WelcomePage = () => {
         <div style={styles.buttonContainer}>
           <Button 
             text="Get Started" 
-            onClick={() => window.location.href = '/signup'} 
+            onClick={() => navigate('/signup')} // Use navigate to go to signup
           />
         </div>
       </div>

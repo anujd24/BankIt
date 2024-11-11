@@ -1,4 +1,4 @@
-import { Appbar } from "../components/AppBar";
+import { Appbar } from "../components/Appbar";
 import { Users } from "../components/Users";
 import { useState } from "react";
 

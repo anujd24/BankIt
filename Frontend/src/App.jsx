@@ -11,7 +11,7 @@ import { SuccessPage } from './pages/SuccessPage';
 export const App = () => {
   return (
     <Router>
-      <div>
+      
         <Routes>
           <Route path="/" element={<WelcomePage />} />
           <Route path="/signup" element={<Signup />} />
@@ -19,7 +19,7 @@ export const App = () => {
           <Route path="/send" element={<SendMoney />} />
           <Route path="/success" element={<SuccessPage />} />
         </Routes>
-      </div>
+      
     </Router>
   );
 };

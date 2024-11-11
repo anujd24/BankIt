@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Lottie from "react-lottie";
-import transferMoney from "../assets/transfer-Animation.json"; // First Lottie animation file
+import transferMoney from "../assets/transfer-animation.json"; // First Lottie animation file
 import leftSideAnimation from "../assets/leftSide-Animation.json"; // Second Lottie animation for the left side
 import rightSideAnimation from "../assets/rightSide-Animation.json"; // Third Lottie animation for the right side
 
