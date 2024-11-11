@@ -8,7 +8,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../styles/signup.css"; // Include the signup styles
 
-const apiBaseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000'; // Default to localhost if API URL is not set
+// const apiBaseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000'; // Default to localhost if API URL is not set
 
 export const Signup = () => {
     const [firstname, setFirstName] = useState("");
@@ -26,7 +26,7 @@ export const Signup = () => {
         }
 
         try {
-            const response = await axios.post(`${apiBaseUrl}/api/v1/user/signup`, {
+            const response = await axios.post("localhost:3000/api/v1/user/signup", {
                 firstname,
                 lastname,
                 username,
