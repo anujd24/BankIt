@@ -1,25 +1,26 @@
 // src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Signup } from './pages/Signup';
 import { Dashboard } from './pages/Dashboard';
 import { SendMoney } from './pages/SendMoney';
 import { WelcomePage } from './pages/WelcomePage';
 import { SuccessPage } from './pages/SuccessPage';
 
+// Define your routes with createBrowserRouter
+const router = createBrowserRouter(
+  [
+    { path: "/", element: <WelcomePage /> },
+    { path: "/signup", element: <Signup /> },
+    { path: "/dashboard", element: <Dashboard /> },
+    { path: "/send", element: <SendMoney /> },
+    { path: "/success", element: <SuccessPage /> },
+  ],
+  {
+    future: { v7_startTransition: true }, // Enable the future flag here
+  }
+);
 
 export const App = () => {
-  return (
-    <Router>
-      
-        <Routes>
-          <Route path="/" element={<WelcomePage />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/send" element={<SendMoney />} />
-          <Route path="/success" element={<SuccessPage />} />
-        </Routes>
-      
-    </Router>
-  );
+  return <RouterProvider router={router} />;
 };
