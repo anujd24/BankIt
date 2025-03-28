@@ -93,7 +93,7 @@ export const WelcomePage = () => {
         <div style={styles.buttonContainer}>
           <Button 
             text="Get Started" 
-            onClick={() => navigate('/signup')} // Use navigate to go to signup
+            onClick={() => navigate('/signup')}
           />
         </div>
       </div>

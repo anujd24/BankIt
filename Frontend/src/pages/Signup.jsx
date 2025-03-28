@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import "../styles/signup.css"; 
 
+const API_BASE_URL = import.meta.env.API_BACKEND_URL;
+
 export const Signup = () => {
     const [firstname, setFirstName] = useState("");
     const [lastname, setLastName] = useState("");
@@ -26,7 +28,7 @@ export const Signup = () => {
         }
 
         try {
-            const response = await axios.post("http://localhost:3000/api/v1/user/signup", {
+            const response = await axios.post(`${API_BASE_URL}/api/v1/user/signup`, {
                 firstname,
                 lastname,
                 username,
@@ -39,7 +41,7 @@ export const Signup = () => {
                 localStorage.setItem("token", response.data.token);
             }
 
-            navigate("/dashboard"); // Navigate to dashboard
+            navigate("/dashboard");
 
         } catch (error) {
             console.error("Error signing up:", error.response?.data || error.message);
@@ -53,7 +55,7 @@ export const Signup = () => {
                 <Heading text={"Create an Account"} className="text-3xl font-bold text-gray-800 mb-4 text-center" />
                 <SubHeading text={"Fill in your details to sign up"} className="text-gray-500 mb-6 text-center" />
 
-                {error && <div className="cyberpunk-error">{error}</div>} {/* Display error if any */}
+                {error && <div className="cyberpunk-error">{error}</div>} 
 
                 <div className="space-y-4">
                     <InputBox

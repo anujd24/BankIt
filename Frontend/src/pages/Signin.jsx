@@ -8,6 +8,8 @@ import { SubHeading } from "../components/SubHeading";
 import { useNavigate } from "react-router-dom";
 import "../styles/cyberpunk.css";
 
+const API_BASE_URL = import.meta.env.API_BACKEND_URL;
+
 export const Signin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -16,15 +18,15 @@ export const Signin = () => {
 
 
   const decodeJWT = (token) => {
-    const base64Url = token.split('.')[1]; // Get the second part (payload)
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/'); // Decode base64 URL-safe
-    const decodedData = JSON.parse(atob(base64)); // Decode and parse the JSON
+    const base64Url = token.split('.')[1]; 
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/'); 
+    const decodedData = JSON.parse(atob(base64)); 
     return decodedData;
   };
   
   const handleSignIn = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/api/v1/user/signin", {
+      const response = await axios.post(`${API_BASE_URL}/api/v1/user/signin`, {
         username,
         password,
       });
