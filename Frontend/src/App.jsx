@@ -1,4 +1,3 @@
-// src/App.js
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Signin } from './pages/Signin';

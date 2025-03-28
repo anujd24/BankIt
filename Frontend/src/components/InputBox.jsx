@@ -1,11 +1,11 @@
-// src/components/InputBox.jsx
 import React from 'react';
 
-export function InputBox({ label, placeholder, onChange }) {
+export function InputBox({ label, placeholder, onChange, type = "text" }) {  // ✅ Added `type` prop
     return (
         <div style={styles.container}>
             <div style={styles.label}>{label}</div>
             <input 
+                type={type} 
                 onChange={onChange} 
                 placeholder={placeholder} 
                 style={styles.input}

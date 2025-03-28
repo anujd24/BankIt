@@ -6,15 +6,15 @@ import { InputBox } from "../components/InputBox";
 import { SubHeading } from "../components/SubHeading";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "../styles/signup.css"; // Include the signup styles
-
-// const apiBaseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000'; // Default to localhost if API URL is not set
+import { Eye, EyeOff } from "lucide-react";
+import "../styles/signup.css"; 
 
 export const Signup = () => {
     const [firstname, setFirstName] = useState("");
     const [lastname, setLastName] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -78,9 +78,12 @@ export const Signup = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Enter Password"
                         label="Password"
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         className="cyberpunk-input-container"
                     />
+                    <button onClick={() => setShowPassword(!showPassword)}>
+                        {showPassword ? <EyeOff /> : <Eye />}
+                    </button>
                 </div>
 
                 <div className="cyberpunk-button-container">

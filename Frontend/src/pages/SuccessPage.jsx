@@ -1,4 +1,3 @@
-// src/SuccessPage.js
 import React from "react";
 import Lottie from "lottie-react";
 import successAnimation from "../assets/success-animation.json";
