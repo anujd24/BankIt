@@ -9,5 +9,9 @@ app.use(express.json());
 import {router as mainRouter} from "./routes/index.js"
 
 app.use("/api/v1", mainRouter);
+app.get("/", (req, res) => {
+    res.send("Backend is running! 🚀");
+});
+
 
 app.listen(3000);

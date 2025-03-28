@@ -21,11 +21,11 @@ export const Dashboard = () => {
                     />
                 </div>
 
-                {/* Conditionally render the User Management section based on balance input */}
+                
                 {balance && balance > 0 ? (
                     <div className="bg-gray-100 p-4 rounded-lg shadow-md">
                         <h3 className="text-xl font-semibold text-gray-800 mb-4">User Management</h3>
-                        <div className="max-h-80 overflow-y-auto"> {/* Apply max height and scrolling */}
+                        <div className="max-h-80 overflow-y-auto"> 
                             <Users />
                         </div>
                     </div>

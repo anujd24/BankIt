@@ -1,8 +1,17 @@
 import mongoose from "mongoose"
 
-const MONGODB_URL = "mongodb+srv://anujd24:GkTYCfHDWEwzmVIn@ad.tqrvfcl.mongodb.net/BankIt";
+import dotenv from "dotenv";
+ 
+dotenv.config();
 
-mongoose.connect(MONGODB_URL);
+const MONGODB_URL = process.env.MONGODB_URI;
+
+mongoose.connect(MONGODB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+.then(() => console.log("MongoDB connected successfully"))
+.catch((err) => console.error(" MongoDB connection error:", err));
 
 const UserSchema = mongoose.Schema({
     username: String,
